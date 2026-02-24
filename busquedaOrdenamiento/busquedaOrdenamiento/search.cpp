@@ -1,5 +1,13 @@
+/**
+ * @file search.cpp
+ * @brief Implementación de algoritmos de búsqueda.
+ */
+
 #include "search.h"
 
+ /**
+  * @brief Implementación de búsqueda secuencial.
+  */
 int busquedaSecuencial(int arreglo[], int n, int valor)
 {
     int i;
@@ -7,14 +15,15 @@ int busquedaSecuencial(int arreglo[], int n, int valor)
     for (i = 0; i < n; i++)
     {
         if (arreglo[i] == valor)
-        {
-            return i;  // devuelve posición
-        }
+            return i;
     }
 
-    return -1; // no encontrado
+    return -1;
 }
 
+/**
+ * @brief Implementación de búsqueda binaria.
+ */
 int busquedaBinaria(int arreglo[], int n, int valor)
 {
     int izquierda = 0;
@@ -26,17 +35,11 @@ int busquedaBinaria(int arreglo[], int n, int valor)
         medio = (izquierda + derecha) / 2;
 
         if (arreglo[medio] == valor)
-        {
             return medio;
-        }
         else if (arreglo[medio] < valor)
-        {
             izquierda = medio + 1;
-        }
         else
-        {
             derecha = medio - 1;
-        }
     }
 
     return -1;

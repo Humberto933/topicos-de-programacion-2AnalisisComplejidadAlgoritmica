@@ -1,8 +1,15 @@
+/**
+ * @file view.cpp
+ * @brief Implementación de funciones de visualización.
+ */
+
 #include <iostream>
 using namespace std;
 #include "view.h"
 
-// Menú principal con nuevas opciones de generación de números
+/**
+ * @brief Muestra el menú principal del programa.
+ */
 void mostrarMenu()
 {
     cout << "\n=== MENU ===\n";
@@ -15,18 +22,22 @@ void mostrarMenu()
     cout << "Seleccione opcion: ";
 }
 
-// Muestra el arreglo en pantalla
+/**
+ * @brief Imprime el contenido del arreglo.
+ */
 void mostrarArreglo(int arreglo[], int n)
 {
     cout << "\nArreglo: ";
+
     for (int i = 0; i < n; i++)
-    {
         cout << arreglo[i] << " ";
-    }
+
     cout << endl;
 }
 
-// Solicita al usuario un valor para buscar
+/**
+ * @brief Pide al usuario el valor a buscar.
+ */
 int pedirValor()
 {
     int valor;
@@ -35,10 +46,13 @@ int pedirValor()
     return valor;
 }
 
-// Menú de métodos de ordenamiento
+/**
+ * @brief Muestra menú de métodos de ordenamiento.
+ */
 int mostrarMenuOrdenamiento()
 {
     int opcion;
+
     cout << "\n=== METODOS DE ORDENAMIENTO ===\n";
     cout << "1. Burbuja\n";
     cout << "2. Seleccion\n";
@@ -46,6 +60,7 @@ int mostrarMenuOrdenamiento()
     cout << "4. QuickSort\n";
     cout << "5. MergeSort\n";
     cout << "Seleccione metodo: ";
+
     cin >> opcion;
     return opcion;
 }

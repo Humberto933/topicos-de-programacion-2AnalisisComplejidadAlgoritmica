@@ -1,18 +1,31 @@
+/**
+ * @file Arreglo.cpp
+ * @brief Implementación de la clase Arreglo.
+ */
+
 #include "Arreglo.h"
 #include <iostream>
-#include <cstdlib> // rand, srand
-#include <ctime>   // time
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
+/**
+ * @brief Constructor de la clase.
+ */
 Arreglo::Arreglo() {
     n = 10;
     int inicial[10] = { 33, 5, 90, 12, 41, 8, 77, 20, 50, 62 };
     for (int i = 0; i < n; i++)
         arreglo[i] = inicial[i];
-    srand(static_cast<unsigned int>(time(0))); // semilla aleatoria
+
+    srand(static_cast<unsigned int>(time(0)));
 }
 
-// ==================== VISUALIZACION ====================
+// ================= VISUALIZACION =================
+
+/**
+ * @brief Muestra el menú principal.
+ */
 void Arreglo::mostrarMenu() {
     cout << "\n=== MENU ===\n";
     cout << "1. Busqueda Secuencial\n";
@@ -24,6 +37,9 @@ void Arreglo::mostrarMenu() {
     cout << "Seleccione opcion: ";
 }
 
+/**
+ * @brief Muestra el contenido del arreglo.
+ */
 void Arreglo::mostrarArreglo() {
     cout << "\nArreglo: ";
     for (int i = 0; i < n; i++)
@@ -31,6 +47,9 @@ void Arreglo::mostrarArreglo() {
     cout << endl;
 }
 
+/**
+ * @brief Solicita valor al usuario.
+ */
 int Arreglo::pedirValor() {
     int valor;
     cout << "Ingrese valor: ";
@@ -38,6 +57,9 @@ int Arreglo::pedirValor() {
     return valor;
 }
 
+/**
+ * @brief Muestra menú de ordenamientos.
+ */
 int Arreglo::mostrarMenuOrdenamiento() {
     int opcion;
     cout << "\n=== METODOS DE ORDENAMIENTO ===\n";
@@ -47,9 +69,13 @@ int Arreglo::mostrarMenuOrdenamiento() {
     return opcion;
 }
 
+/**
+ * @brief Retorna tamaño actual.
+ */
 int Arreglo::getN() { return n; }
 
-// ==================== BUSQUEDAS ====================
+// ================= BUSQUEDAS =================
+
 int Arreglo::busquedaSecuencial(int valor) {
     for (int i = 0; i < n; i++)
         if (arreglo[i] == valor) return i;
@@ -67,7 +93,8 @@ int Arreglo::busquedaBinaria(int valor) {
     return -1;
 }
 
-// ==================== ORDENAMIENTOS ====================
+// ================= ORDENAMIENTOS =================
+
 void Arreglo::ordenarBurbuja() {
     for (int i = 0; i < n - 1; i++)
         for (int j = 0; j < n - 1 - i; j++)
@@ -99,26 +126,35 @@ void Arreglo::ordenarInsercion() {
 void Arreglo::quickSort(int izquierda, int derecha, int& comparaciones, int& intercambios) {
     int i = izquierda, j = derecha;
     int pivote = arreglo[(izquierda + derecha) / 2];
+
     while (i <= j) {
         while (arreglo[i] < pivote) { i++; comparaciones++; }
         while (arreglo[j] > pivote) { j--; comparaciones++; }
-        if (i <= j) { swap(arreglo[i], arreglo[j]); intercambios++; i++; j--; }
+        if (i <= j) {
+            swap(arreglo[i], arreglo[j]);
+            intercambios++;
+            i++; j--;
+        }
     }
     if (izquierda < j) quickSort(izquierda, j, comparaciones, intercambios);
     if (i < derecha) quickSort(i, derecha, comparaciones, intercambios);
 }
 
 void Arreglo::merge(int izquierda, int medio, int derecha, int& comparaciones) {
-    int temp[10000]; // suficiente para MAX
+    int temp[10000];
     int i = izquierda, j = medio + 1, k = 0;
+
     while (i <= medio && j <= derecha) {
         comparaciones++;
         if (arreglo[i] <= arreglo[j]) temp[k++] = arreglo[i++];
         else temp[k++] = arreglo[j++];
     }
+
     while (i <= medio) temp[k++] = arreglo[i++];
     while (j <= derecha) temp[k++] = arreglo[j++];
-    for (i = izquierda, k = 0; i <= derecha; i++, k++) arreglo[i] = temp[k];
+
+    for (i = izquierda, k = 0; i <= derecha; i++, k++)
+        arreglo[i] = temp[k];
 }
 
 void Arreglo::mergeSort(int izquierda, int derecha, int& comparaciones) {
@@ -130,10 +166,12 @@ void Arreglo::mergeSort(int izquierda, int derecha, int& comparaciones) {
     }
 }
 
-// ==================== GENERACION ALEATORIA ====================
+// ================= GENERACION =================
+
 void Arreglo::generarAleatoriosConRepeticion(int tamaño, int maxValor) {
     if (tamaño > MAX) tamaño = MAX;
     n = tamaño;
+
     for (int i = 0; i < n; i++) {
         arreglo[i] = rand() % maxValor + 1;
         cout << "Pos " << i << " = " << arreglo[i] << endl;
@@ -143,15 +181,20 @@ void Arreglo::generarAleatoriosConRepeticion(int tamaño, int maxValor) {
 void Arreglo::generarAleatoriosSinRepeticion(int tamaño, int maxValor) {
     if (tamaño > MAX) tamaño = MAX;
     n = tamaño;
+
     for (int i = 0; i < n; i++) {
         int num;
         bool repetido;
+
         do {
             num = rand() % maxValor + 1;
             repetido = false;
+
             for (int j = 0; j < i; j++)
                 if (arreglo[j] == num) { repetido = true; break; }
+
         } while (repetido);
+
         arreglo[i] = num;
         cout << "Pos " << i << " = " << arreglo[i] << endl;
     }
