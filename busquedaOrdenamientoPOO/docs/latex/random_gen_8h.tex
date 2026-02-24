@@ -1,0 +1,74 @@
+\doxysection{C:\+/\+\+Users/\+caseh/\+\+Downloads/\+busqueda\+Ordenamiento/\+busqueda\+Ordenamiento/\+random\+Gen.h File Reference}
+\hypertarget{random_gen_8h}{}\label{random_gen_8h}\index{C:/Users/caseh/Downloads/busquedaOrdenamiento/busquedaOrdenamiento/randomGen.h@{C:/Users/caseh/Downloads/busquedaOrdenamiento/busquedaOrdenamiento/randomGen.h}}
+
+
+Declaraciones de funciones para generación de números aleatorios.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{random_gen_8h_ace80f443e0a1fca29fb0378920e536b9}{generar\+Aleatorios\+Con\+Repeticion}} (int arreglo\+[$\,$]\+, int \&n, int tam)
+\begin{DoxyCompactList}\small\item\em Genera números aleatorios permitiendo repetición. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{random_gen_8h_a6589580c80c9010c363e92531e5d354f}{generar\+Aleatorios\+Sin\+Repeticion}} (int arreglo\+[$\,$]\+, int \&n, int tam, int M=0)
+\begin{DoxyCompactList}\small\item\em Genera números aleatorios sin repetición. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaraciones de funciones para generación de números aleatorios. 
+
+\begin{DoxyAuthor}{Author}
+
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2026 
+\end{DoxyDate}
+
+
+\label{doc-func-members}
+\Hypertarget{random_gen_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{random_gen_8h_ace80f443e0a1fca29fb0378920e536b9}\index{randomGen.h@{randomGen.h}!generarAleatoriosConRepeticion@{generarAleatoriosConRepeticion}}
+\index{generarAleatoriosConRepeticion@{generarAleatoriosConRepeticion}!randomGen.h@{randomGen.h}}
+\doxysubsubsection{\texorpdfstring{generarAleatoriosConRepeticion()}{generarAleatoriosConRepeticion()}}
+{\footnotesize\ttfamily \label{random_gen_8h_ace80f443e0a1fca29fb0378920e536b9} 
+void generar\+Aleatorios\+Con\+Repeticion (\begin{DoxyParamCaption}\item[{int}]{arreglo}{\+[$\,$]\+, }\item[{int \&}]{n}{, }\item[{int}]{tam}{}\end{DoxyParamCaption})}
+
+
+
+Genera números aleatorios permitiendo repetición. 
+
+Llena el arreglo con valores aleatorios entre 0 y n\texorpdfstring{$\ast$}{*}10.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arreglo} & Arreglo destino \\
+\hline
+{\em n} & Tamaño final generado (por referencia) \\
+\hline
+{\em tam} & Cantidad de elementos a generar\\
+\hline
+\end{DoxyParams}
+Genera números aleatorios permitiendo repetición. \Hypertarget{random_gen_8h_a6589580c80c9010c363e92531e5d354f}\index{randomGen.h@{randomGen.h}!generarAleatoriosSinRepeticion@{generarAleatoriosSinRepeticion}}
+\index{generarAleatoriosSinRepeticion@{generarAleatoriosSinRepeticion}!randomGen.h@{randomGen.h}}
+\doxysubsubsection{\texorpdfstring{generarAleatoriosSinRepeticion()}{generarAleatoriosSinRepeticion()}}
+{\footnotesize\ttfamily \label{random_gen_8h_a6589580c80c9010c363e92531e5d354f} 
+void generar\+Aleatorios\+Sin\+Repeticion (\begin{DoxyParamCaption}\item[{int}]{arreglo}{\+[$\,$]\+, }\item[{int \&}]{n}{, }\item[{int}]{tam}{, }\item[{int}]{M}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Genera números aleatorios sin repetición. 
+
+Utiliza un arreglo auxiliar para evitar duplicados.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arreglo} & Arreglo destino \\
+\hline
+{\em n} & Tamaño final generado \\
+\hline
+{\em tam} & Cantidad de elementos a generar \\
+\hline
+{\em M} & Valor máximo permitido (opcional) \\
+\hline
+\end{DoxyParams}
