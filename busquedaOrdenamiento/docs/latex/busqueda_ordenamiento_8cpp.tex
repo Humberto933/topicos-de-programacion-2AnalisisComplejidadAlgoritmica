@@ -1,0 +1,66 @@
+\doxysection{busqueda\+Ordenamiento/\+busqueda\+Ordenamiento.cpp File Reference}
+\hypertarget{busqueda_ordenamiento_8cpp}{}\label{busqueda_ordenamiento_8cpp}\index{busquedaOrdenamiento/busquedaOrdenamiento.cpp@{busquedaOrdenamiento/busquedaOrdenamiento.cpp}}
+
+
+Programa principal que integra algoritmos de búsqueda, ordenamiento y generación de datos.  
+
+
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include "{}sort.\+h"{}}\newline
+{\ttfamily \+\#include "{}search.\+h"{}}\newline
+{\ttfamily \+\#include "{}view.\+h"{}}\newline
+{\ttfamily \+\#include "{}random\+Gen.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Func$>$ }\\double \doxymbox{\hyperlink{busqueda_ordenamiento_8cpp_a9d12d512e40ca18ca6f90da27f6128e7}{medir\+Tiempo}} (Func funcion)
+\begin{DoxyCompactList}\small\item\em Mide el tiempo de ejecución de una función. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{busqueda_ordenamiento_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Función principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Programa principal que integra algoritmos de búsqueda, ordenamiento y generación de datos. 
+
+Permite al usuario seleccionar operaciones mediante menú y mide el tiempo de ejecución de cada algoritmo. 
+
+\label{doc-func-members}
+\Hypertarget{busqueda_ordenamiento_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{busqueda_ordenamiento_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{busquedaOrdenamiento.cpp@{busquedaOrdenamiento.cpp}!main@{main}}
+\index{main@{main}!busquedaOrdenamiento.cpp@{busquedaOrdenamiento.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{busqueda_ordenamiento_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Función principal. 
+
+Controla el flujo del programa y gestiona todas las operaciones disponibles. \Hypertarget{busqueda_ordenamiento_8cpp_a9d12d512e40ca18ca6f90da27f6128e7}\index{busquedaOrdenamiento.cpp@{busquedaOrdenamiento.cpp}!medirTiempo@{medirTiempo}}
+\index{medirTiempo@{medirTiempo}!busquedaOrdenamiento.cpp@{busquedaOrdenamiento.cpp}}
+\doxysubsubsection{\texorpdfstring{medirTiempo()}{medirTiempo()}}
+{\footnotesize\ttfamily \label{busqueda_ordenamiento_8cpp_a9d12d512e40ca18ca6f90da27f6128e7} 
+template$<$typename Func$>$ \\
+double medir\+Tiempo (\begin{DoxyParamCaption}\item[{Func}]{funcion}{}\end{DoxyParamCaption})}
+
+
+
+Mide el tiempo de ejecución de una función. 
+
+Utiliza lambdas para medir cualquier algoritmo.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Func} & Tipo de función \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em funcion} & Función a ejecutar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tiempo en milisegundos 
+\end{DoxyReturn}

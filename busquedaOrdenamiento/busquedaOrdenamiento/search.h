@@ -1,34 +1,27 @@
-#pragma once
 #ifndef SEARCH_H
 #define SEARCH_H
 
 /**
  * @file search.h
- * @brief Declaración de algoritmos de búsqueda.
+ * @brief Algoritmos de búsqueda.
  */
 
  /**
-  * @brief Realiza búsqueda secuencial.
-  *
-  * Recorre el arreglo elemento por elemento.
-  *
-  * @param arreglo Arreglo de datos
+  * @brief Búsqueda secuencial.
+  * @param arr Arreglo
   * @param n Tamaño
-  * @param valor Valor a buscar
-  * @return índice encontrado o -1
+  * @param valor Valor buscado
+  * @return índice o -1
   */
-int busquedaSecuencial(int arreglo[], int n, int valor);
+int busquedaSecuencial(int arr[], int n, int valor);
 
 /**
- * @brief Realiza búsqueda binaria.
- *
- * Requiere que el arreglo esté ordenado previamente.
- *
- * @param arreglo Arreglo ordenado
+ * @brief Búsqueda binaria (requiere arreglo ordenado).
+ * @param arr Arreglo
  * @param n Tamaño
  * @param valor Valor buscado
- * @return índice encontrado o -1
+ * @return índice o -1
  */
-int busquedaBinaria(int arreglo[], int n, int valor);
+int busquedaBinaria(int arr[], int n, int valor);
 
 #endif

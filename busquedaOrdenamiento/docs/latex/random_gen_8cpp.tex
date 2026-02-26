@@ -1,0 +1,61 @@
+\doxysection{busqueda\+Ordenamiento/\+random\+Gen.cpp File Reference}
+\hypertarget{random_gen_8cpp}{}\label{random_gen_8cpp}\index{busquedaOrdenamiento/randomGen.cpp@{busquedaOrdenamiento/randomGen.cpp}}
+
+
+Implementación de generadores de números aleatorios.  
+
+
+{\ttfamily \+\#include "{}random\+Gen.\+h"{}}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$cstdlib$>$}\newline
+{\ttfamily \+\#include $<$ctime$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{random_gen_8cpp_ace80f443e0a1fca29fb0378920e536b9}{generar\+Aleatorios\+Con\+Repeticion}} (int arreglo\+[$\,$]\+, int \&n, int tam)
+\begin{DoxyCompactList}\small\item\em Genera números aleatorios con repetición. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{random_gen_8cpp_a1d8897ae6edd7f874ad9517b20c2cfda}{generar\+Aleatorios\+Sin\+Repeticion}} (int arreglo\+[$\,$]\+, int \&n, int tam, int M)
+\begin{DoxyCompactList}\small\item\em Genera números aleatorios sin repetición. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación de generadores de números aleatorios. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{random_gen_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{random_gen_8cpp_ace80f443e0a1fca29fb0378920e536b9}\index{randomGen.cpp@{randomGen.cpp}!generarAleatoriosConRepeticion@{generarAleatoriosConRepeticion}}
+\index{generarAleatoriosConRepeticion@{generarAleatoriosConRepeticion}!randomGen.cpp@{randomGen.cpp}}
+\doxysubsubsection{\texorpdfstring{generarAleatoriosConRepeticion()}{generarAleatoriosConRepeticion()}}
+{\footnotesize\ttfamily \label{random_gen_8cpp_ace80f443e0a1fca29fb0378920e536b9} 
+void generar\+Aleatorios\+Con\+Repeticion (\begin{DoxyParamCaption}\item[{int}]{arreglo}{\+[$\,$]\+, }\item[{int \&}]{n}{, }\item[{int}]{tam}{}\end{DoxyParamCaption})}
+
+
+
+Genera números aleatorios con repetición. 
+
+Genera números aleatorios permitiendo repetición. \Hypertarget{random_gen_8cpp_a1d8897ae6edd7f874ad9517b20c2cfda}\index{randomGen.cpp@{randomGen.cpp}!generarAleatoriosSinRepeticion@{generarAleatoriosSinRepeticion}}
+\index{generarAleatoriosSinRepeticion@{generarAleatoriosSinRepeticion}!randomGen.cpp@{randomGen.cpp}}
+\doxysubsubsection{\texorpdfstring{generarAleatoriosSinRepeticion()}{generarAleatoriosSinRepeticion()}}
+{\footnotesize\ttfamily \label{random_gen_8cpp_a1d8897ae6edd7f874ad9517b20c2cfda} 
+void generar\+Aleatorios\+Sin\+Repeticion (\begin{DoxyParamCaption}\item[{int}]{arreglo}{\+[$\,$]\+, }\item[{int \&}]{n}{, }\item[{int}]{tam}{, }\item[{int}]{M}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Genera números aleatorios sin repetición. 
+
+Utiliza un arreglo auxiliar para evitar duplicados.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arreglo} & Arreglo destino \\
+\hline
+{\em n} & Tamaño final generado \\
+\hline
+{\em tam} & Cantidad de elementos a generar \\
+\hline
+{\em M} & Valor máximo permitido (opcional) \\
+\hline
+\end{DoxyParams}

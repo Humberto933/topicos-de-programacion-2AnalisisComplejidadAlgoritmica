@@ -1,34 +1,25 @@
-#pragma once
 #ifndef RANDOMGEN_H
 #define RANDOMGEN_H
 
 /**
  * @file randomGen.h
- * @brief Declaraciones de funciones para generación de números aleatorios.
- * @author
- * @date 2026
+ * @brief Generación de arreglos aleatorios.
  */
 
  /**
-  * @brief Genera números aleatorios permitiendo repetición.
-  *
-  * Llena el arreglo con valores aleatorios entre 0 y n*10.
-  *
+  * @brief Genera números aleatorios con repetición.
   * @param arreglo Arreglo destino
-  * @param n Tamaño final generado (por referencia)
-  * @param tam Cantidad de elementos a generar
+  * @param n Cantidad generada
+  * @param tam Tamaño solicitado
   */
 void generarAleatoriosConRepeticion(int arreglo[], int& n, int tam);
 
 /**
  * @brief Genera números aleatorios sin repetición.
- *
- * Utiliza un arreglo auxiliar para evitar duplicados.
- *
  * @param arreglo Arreglo destino
- * @param n Tamaño final generado
- * @param tam Cantidad de elementos a generar
- * @param M Valor máximo permitido (opcional)
+ * @param n Cantidad generada
+ * @param tam Tamaño solicitado
+ * @param M Valor máximo posible (opcional)
  */
 void generarAleatoriosSinRepeticion(int arreglo[], int& n, int tam, int M = 0);
 

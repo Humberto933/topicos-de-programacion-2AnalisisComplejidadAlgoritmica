@@ -1,0 +1,73 @@
+\doxysection{busqueda\+Ordenamiento/\+search.h File Reference}
+\hypertarget{search_8h}{}\label{search_8h}\index{busquedaOrdenamiento/search.h@{busquedaOrdenamiento/search.h}}
+
+
+Declaración de algoritmos de búsqueda.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{search_8h_a75e6fd1d78c3b2e70ff37a3b5b3cc7c4}{busqueda\+Secuencial}} (int arreglo\+[$\,$]\+, int n, int valor)
+\begin{DoxyCompactList}\small\item\em Realiza búsqueda secuencial. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{search_8h_adcc1bc85b9363ce92f06219f04ac8f64}{busqueda\+Binaria}} (int arreglo\+[$\,$]\+, int n, int valor)
+\begin{DoxyCompactList}\small\item\em Realiza búsqueda binaria. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaración de algoritmos de búsqueda. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{search_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{search_8h_adcc1bc85b9363ce92f06219f04ac8f64}\index{search.h@{search.h}!busquedaBinaria@{busquedaBinaria}}
+\index{busquedaBinaria@{busquedaBinaria}!search.h@{search.h}}
+\doxysubsubsection{\texorpdfstring{busquedaBinaria()}{busquedaBinaria()}}
+{\footnotesize\ttfamily \label{search_8h_adcc1bc85b9363ce92f06219f04ac8f64} 
+int busqueda\+Binaria (\begin{DoxyParamCaption}\item[{int}]{arreglo}{\+[$\,$]\+, }\item[{int}]{n}{, }\item[{int}]{valor}{}\end{DoxyParamCaption})}
+
+
+
+Realiza búsqueda binaria. 
+
+Requiere que el arreglo esté ordenado previamente.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arreglo} & Arreglo ordenado \\
+\hline
+{\em n} & Tamaño \\
+\hline
+{\em valor} & Valor buscado \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+índice encontrado o -\/1
+\end{DoxyReturn}
+Realiza búsqueda binaria. \Hypertarget{search_8h_a75e6fd1d78c3b2e70ff37a3b5b3cc7c4}\index{search.h@{search.h}!busquedaSecuencial@{busquedaSecuencial}}
+\index{busquedaSecuencial@{busquedaSecuencial}!search.h@{search.h}}
+\doxysubsubsection{\texorpdfstring{busquedaSecuencial()}{busquedaSecuencial()}}
+{\footnotesize\ttfamily \label{search_8h_a75e6fd1d78c3b2e70ff37a3b5b3cc7c4} 
+int busqueda\+Secuencial (\begin{DoxyParamCaption}\item[{int}]{arreglo}{\+[$\,$]\+, }\item[{int}]{n}{, }\item[{int}]{valor}{}\end{DoxyParamCaption})}
+
+
+
+Realiza búsqueda secuencial. 
+
+Recorre el arreglo elemento por elemento.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arreglo} & Arreglo de datos \\
+\hline
+{\em n} & Tamaño \\
+\hline
+{\em valor} & Valor a buscar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+índice encontrado o -\/1
+\end{DoxyReturn}
+Realiza búsqueda secuencial. 

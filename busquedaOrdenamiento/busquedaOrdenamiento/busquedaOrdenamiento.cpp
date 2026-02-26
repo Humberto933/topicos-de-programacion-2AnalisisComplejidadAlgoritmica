@@ -1,220 +1,94 @@
-/**
- * @file busquedaOrdenamiento.cpp
- * @brief Programa principal que integra algoritmos de búsqueda,
- * ordenamiento y generación de datos.
- *
- * Permite al usuario seleccionar operaciones mediante menú
- * y mide el tiempo de ejecución de cada algoritmo.
- */
-
 #include <iostream>
 #include <chrono>
+
+#include "view.h"
 #include "sort.h"
 #include "search.h"
-#include "view.h"
 #include "randomGen.h"
 
 using namespace std;
-using namespace std::chrono;
+using namespace chrono;
 
-/**
- * @brief Mide el tiempo de ejecución de una función.
- *
- * Utiliza lambdas para medir cualquier algoritmo.
- *
- * @tparam Func Tipo de función
- * @param funcion Función a ejecutar
- * @return tiempo en milisegundos
- */
 template<typename Func>
-double medirTiempo(Func funcion)
+double medirTiempo(Func f)
 {
-    auto inicio = high_resolution_clock::now();
-
-    funcion();
-
-    auto fin = high_resolution_clock::now();
-
-    return duration_cast<microseconds>(fin - inicio).count() / 1000.0;
+    auto i = high_resolution_clock::now();
+    f();
+    auto f2 = high_resolution_clock::now();
+    return duration_cast<microseconds>(f2 - i).count() / 1000.0;
 }
 
-/**
- * @brief Función principal.
- *
- * Controla el flujo del programa y gestiona
- * todas las operaciones disponibles.
- */
 int main()
 {
-    int arreglo[1000];
+    int arr[20000];
     int n = 10;
 
     int opcion;
-    int metodo;
-    int posicion;
-    int valor;
-    int comparaciones;
-    int intercambios;
-    int N, M;
 
-    do
-    {
+    do {
         mostrarMenu();
+        cout << "Seleccione opcion: ";
         cin >> opcion;
 
         switch (opcion)
         {
         case 1:
         {
-            mostrarArreglo(arreglo, n);
-            valor = pedirValor();
+            mostrarArreglo(arr, n);
+            int v = pedirValor();
+            int pos;
 
-            double tiempo = medirTiempo([&]()
-                {
-                    busquedaSecuencial(arreglo, n, valor);
+            double t = medirTiempo([&]() {
+                pos = busquedaSecuencial(arr, n, v);
                 });
 
-            posicion = busquedaSecuencial(arreglo, n, valor);
-
-            if (posicion != -1)
-                cout << "Valor encontrado en posicion: " << posicion << endl;
-            else
-                cout << "Valor no encontrado.\n";
-
-            cout << "Tiempo de busquedaSecuencial: " << tiempo << " ms\n";
+            cout << "Pos=" << pos << " Tiempo=" << t << " ms\n";
             break;
         }
 
         case 2:
         {
-            cout << "\nOrdenando arreglo con Burbuja...\n";
+            int v = pedirValor();
+            int pos;
 
-            double tiempoOrden = medirTiempo([&]()
-                {
-                    ordenarBurbuja(arreglo, n);
+            double t = medirTiempo([&]() {
+                pos = busquedaBinaria(arr, n, v);
                 });
 
-            mostrarArreglo(arreglo, n);
-
-            cout << "Tiempo de ordenarBurbuja: " << tiempoOrden << " ms\n";
-
-            valor = pedirValor();
-
-            double tiempoBusqueda = medirTiempo([&]()
-                {
-                    busquedaBinaria(arreglo, n, valor);
-                });
-
-            posicion = busquedaBinaria(arreglo, n, valor);
-
-            if (posicion != -1)
-                cout << "Valor encontrado en posicion: " << posicion << endl;
-            else
-                cout << "Valor no encontrado.\n";
-
-            cout << "Tiempo de busquedaBinaria: " << tiempoBusqueda << " ms\n";
+            cout << "Pos=" << pos << " Tiempo=" << t << " ms\n";
             break;
         }
 
         case 3:
         {
-            metodo = mostrarMenuOrdenamiento();
+            int m = mostrarMenuOrdenamiento();
+            int comps = 0, swaps = 0;
+            double t = 0;
 
-            comparaciones = 0;
-            intercambios = 0;
+            if (m == 1) t = medirTiempo([&]() {ordenarBurbuja(arr, n); });
+            if (m == 2) t = medirTiempo([&]() {ordenarSeleccion(arr, n); });
+            if (m == 3) t = medirTiempo([&]() {ordenarInsercion(arr, n); });
+            if (m == 4) t = medirTiempo([&]() {quickSort(arr, 0, n - 1, comps, swaps); });
+            if (m == 5) t = medirTiempo([&]() {mergeSort(arr, 0, n - 1, comps); });
 
-            double tiempo = 0;
-
-            if (metodo == 1)
-                tiempo = medirTiempo([&]() { ordenarBurbuja(arreglo, n); });
-
-            else if (metodo == 2)
-                tiempo = medirTiempo([&]() { ordenarSeleccion(arreglo, n); });
-
-            else if (metodo == 3)
-                tiempo = medirTiempo([&]() { ordenarInsercion(arreglo, n); });
-
-            else if (metodo == 4)
-            {
-                tiempo = medirTiempo([&]()
-                    {
-                        quickSort(arreglo, 0, n - 1, comparaciones, intercambios);
-                    });
-
-                cout << "Comparaciones: " << comparaciones
-                    << ", Intercambios: " << intercambios << endl;
-            }
-
-            else if (metodo == 5)
-            {
-                tiempo = medirTiempo([&]()
-                    {
-                        mergeSort(arreglo, 0, n - 1, comparaciones);
-                    });
-
-                cout << "Comparaciones: " << comparaciones << endl;
-            }
-            else
-                cout << "Metodo invalido.\n";
-
-            cout << "\nArreglo ordenado:\n";
-            mostrarArreglo(arreglo, n);
-
-            cout << "Tiempo de ordenamiento: " << tiempo << " ms\n";
+            mostrarArreglo(arr, n);
+            cout << "Tiempo=" << t << " ms\n";
             break;
         }
 
         case 4:
         {
-            cout << "Ingrese N (tamaño base): ";
-            cin >> N;
-
-            cout << "Seleccione tamaño: 1=N, 2=N*N, 3=N*M: ";
-            int tipo;
-            cin >> tipo;
-
-            if (tipo == 1) n = N;
-            else if (tipo == 2) n = N * N;
-            else if (tipo == 3)
-            {
-                cout << "Ingrese M: ";
-                cin >> M;
-                n = N * M;
-            }
-
-            double tiempo = medirTiempo([&]()
-                {
-                    generarAleatoriosConRepeticion(arreglo, n, n);
-                });
-
-            cout << "Tiempo de generacion (con repeticion): " << tiempo << " ms\n";
+            cout << "Ingrese tamaño del arreglo: ";
+            cin >> n;
+            generarAleatoriosConRepeticion(arr, n, n);
             break;
         }
 
         case 5:
         {
-            cout << "Ingrese N (tamaño base): ";
-            cin >> N;
-
-            cout << "Seleccione tamaño: 1=N, 2=N*N, 3=N*M: ";
-            int tipo;
-            cin >> tipo;
-
-            if (tipo == 1) n = N;
-            else if (tipo == 2) n = N * N;
-            else if (tipo == 3)
-            {
-                cout << "Ingrese M: ";
-                cin >> M;
-                n = N * M;
-            }
-
-            double tiempo = medirTiempo([&]()
-                {
-                    generarAleatoriosSinRepeticion(arreglo, n, n);
-                });
-
-            cout << "Tiempo de generacion (sin repeticion): " << tiempo << " ms\n";
+            cout << "Ingrese tamaño del arreglo: ";
+            cin >> n;
+            generarAleatoriosSinRepeticion(arr, n, n);
             break;
         }
 
@@ -223,7 +97,7 @@ int main()
             break;
 
         default:
-            cout << "Opcion invalida.\n";
+            cout << "Opcion invalida\n";
         }
 
     } while (opcion != 6);

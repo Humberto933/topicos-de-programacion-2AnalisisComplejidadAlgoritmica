@@ -1,201 +1,192 @@
 /**
  * @file Arreglo.cpp
- * @brief Implementación de la clase Arreglo.
+ * @brief Implementation of Arreglo class.
  */
 
 #include "Arreglo.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+
 using namespace std;
 
-/**
- * @brief Constructor de la clase.
- */
-Arreglo::Arreglo() {
+Arreglo::Arreglo()
+{
     n = 10;
-    int inicial[10] = { 33, 5, 90, 12, 41, 8, 77, 20, 50, 62 };
+    int ini[10] = { 33,5,90,12,41,8,77,20,50,62 };
+
     for (int i = 0; i < n; i++)
-        arreglo[i] = inicial[i];
+        arreglo[i] = ini[i];
 
-    srand(static_cast<unsigned int>(time(0)));
+    srand((unsigned)time(0));
 }
 
-// ================= VISUALIZACION =================
-
-/**
- * @brief Muestra el menú principal.
- */
-void Arreglo::mostrarMenu() {
-    cout << "\n=== MENU ===\n";
-    cout << "1. Busqueda Secuencial\n";
-    cout << "2. Busqueda Binaria (ordena automaticamente)\n";
-    cout << "3. Ordenar Arreglo\n";
-    cout << "4. Generar aleatorios con repeticion\n";
-    cout << "5. Generar aleatorios sin repeticion\n";
-    cout << "6. Salir\n";
-    cout << "Seleccione opcion: ";
+int Arreglo::getN() const
+{
+    return n;
 }
 
-/**
- * @brief Muestra el contenido del arreglo.
- */
-void Arreglo::mostrarArreglo() {
-    cout << "\nArreglo: ";
+void Arreglo::imprimir() const
+{
     for (int i = 0; i < n; i++)
         cout << arreglo[i] << " ";
     cout << endl;
 }
 
-/**
- * @brief Solicita valor al usuario.
- */
-int Arreglo::pedirValor() {
-    int valor;
-    cout << "Ingrese valor: ";
-    cin >> valor;
-    return valor;
+int Arreglo::pedirValor()
+{
+    int v;
+    cout << "Enter value: ";
+    cin >> v;
+    return v;
 }
 
-/**
- * @brief Muestra menú de ordenamientos.
- */
-int Arreglo::mostrarMenuOrdenamiento() {
-    int opcion;
-    cout << "\n=== METODOS DE ORDENAMIENTO ===\n";
-    cout << "1. Burbuja\n2. Seleccion\n3. Insercion\n4. QuickSort\n5. MergeSort\n";
-    cout << "Seleccione metodo: ";
-    cin >> opcion;
-    return opcion;
-}
-
-/**
- * @brief Retorna tamaño actual.
- */
-int Arreglo::getN() { return n; }
-
-// ================= BUSQUEDAS =================
-
-int Arreglo::busquedaSecuencial(int valor) {
+int Arreglo::busquedaSecuencial(int valor)
+{
     for (int i = 0; i < n; i++)
-        if (arreglo[i] == valor) return i;
+        if (arreglo[i] == valor)
+            return i;
     return -1;
 }
 
-int Arreglo::busquedaBinaria(int valor) {
-    int izq = 0, der = n - 1;
-    while (izq <= der) {
-        int medio = (izq + der) / 2;
-        if (arreglo[medio] == valor) return medio;
-        else if (arreglo[medio] < valor) izq = medio + 1;
-        else der = medio - 1;
+int Arreglo::busquedaBinaria(int valor)
+{
+    int izq = 0;
+    int der = n - 1;
+
+    while (izq <= der)
+    {
+        int m = (izq + der) / 2;
+
+        if (arreglo[m] == valor)
+            return m;
+
+        if (arreglo[m] < valor)
+            izq = m + 1;
+        else
+            der = m - 1;
     }
     return -1;
 }
 
-// ================= ORDENAMIENTOS =================
-
-void Arreglo::ordenarBurbuja() {
+void Arreglo::ordenarBurbuja()
+{
     for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - 1 - i; j++)
+        for (int j = 0; j < n - i - 1; j++)
             if (arreglo[j] > arreglo[j + 1])
                 swap(arreglo[j], arreglo[j + 1]);
 }
 
-void Arreglo::ordenarSeleccion() {
-    for (int i = 0; i < n - 1; i++) {
+void Arreglo::ordenarSeleccion()
+{
+    for (int i = 0; i < n - 1; i++)
+    {
         int min = i;
         for (int j = i + 1; j < n; j++)
-            if (arreglo[j] < arreglo[min]) min = j;
+            if (arreglo[j] < arreglo[min])
+                min = j;
+
         swap(arreglo[i], arreglo[min]);
     }
 }
 
-void Arreglo::ordenarInsercion() {
-    for (int i = 1; i < n; i++) {
-        int clave = arreglo[i];
+void Arreglo::ordenarInsercion()
+{
+    for (int i = 1; i < n; i++)
+    {
+        int key = arreglo[i];
         int j = i - 1;
-        while (j >= 0 && arreglo[j] > clave) {
+
+        while (j >= 0 && arreglo[j] > key)
+        {
             arreglo[j + 1] = arreglo[j];
             j--;
         }
-        arreglo[j + 1] = clave;
+        arreglo[j + 1] = key;
     }
 }
 
-void Arreglo::quickSort(int izquierda, int derecha, int& comparaciones, int& intercambios) {
-    int i = izquierda, j = derecha;
-    int pivote = arreglo[(izquierda + derecha) / 2];
+void Arreglo::quickSort(int izq, int der)
+{
+    if (izq >= der) return;
 
-    while (i <= j) {
-        while (arreglo[i] < pivote) { i++; comparaciones++; }
-        while (arreglo[j] > pivote) { j--; comparaciones++; }
-        if (i <= j) {
+    int pivote = arreglo[izq + rand() % (der - izq + 1)];
+    int i = izq;
+    int j = der;
+
+    while (i <= j)
+    {
+        while (arreglo[i] < pivote) i++;
+        while (arreglo[j] > pivote) j--;
+
+        if (i <= j)
+        {
             swap(arreglo[i], arreglo[j]);
-            intercambios++;
-            i++; j--;
+            i++;
+            j--;
         }
     }
-    if (izquierda < j) quickSort(izquierda, j, comparaciones, intercambios);
-    if (i < derecha) quickSort(i, derecha, comparaciones, intercambios);
+
+    quickSort(izq, j);
+    quickSort(i, der);
 }
 
-void Arreglo::merge(int izquierda, int medio, int derecha, int& comparaciones) {
-    int temp[10000];
-    int i = izquierda, j = medio + 1, k = 0;
+void Arreglo::merge(int izq, int mid, int der)
+{
+    static int temp[MAX];
 
-    while (i <= medio && j <= derecha) {
-        comparaciones++;
-        if (arreglo[i] <= arreglo[j]) temp[k++] = arreglo[i++];
-        else temp[k++] = arreglo[j++];
-    }
+    int i = izq;
+    int j = mid + 1;
+    int k = 0;
 
-    while (i <= medio) temp[k++] = arreglo[i++];
-    while (j <= derecha) temp[k++] = arreglo[j++];
+    while (i <= mid && j <= der)
+        temp[k++] = (arreglo[i] < arreglo[j]) ? arreglo[i++] : arreglo[j++];
 
-    for (i = izquierda, k = 0; i <= derecha; i++, k++)
-        arreglo[i] = temp[k];
+    while (i <= mid) temp[k++] = arreglo[i++];
+    while (j <= der) temp[k++] = arreglo[j++];
+
+    for (int t = 0; t < k; t++)
+        arreglo[izq + t] = temp[t];
 }
 
-void Arreglo::mergeSort(int izquierda, int derecha, int& comparaciones) {
-    if (izquierda < derecha) {
-        int medio = (izquierda + derecha) / 2;
-        mergeSort(izquierda, medio, comparaciones);
-        mergeSort(medio + 1, derecha, comparaciones);
-        merge(izquierda, medio, derecha, comparaciones);
-    }
+void Arreglo::mergeSort(int izq, int der)
+{
+    if (izq >= der) return;
+
+    int m = (izq + der) / 2;
+
+    mergeSort(izq, m);
+    mergeSort(m + 1, der);
+    merge(izq, m, der);
 }
 
-// ================= GENERACION =================
+void Arreglo::generarAleatoriosConRepeticion(int tam, int maxValor)
+{
+    if (tam > MAX) tam = MAX;
+    n = tam;
 
-void Arreglo::generarAleatoriosConRepeticion(int tamaño, int maxValor) {
-    if (tamaño > MAX) tamaño = MAX;
-    n = tamaño;
-
-    for (int i = 0; i < n; i++) {
-        arreglo[i] = rand() % maxValor + 1;
-        cout << "Pos " << i << " = " << arreglo[i] << endl;
-    }
+    for (int i = 0; i < n; i++)
+        arreglo[i] = rand() % maxValor;
 }
 
-void Arreglo::generarAleatoriosSinRepeticion(int tamaño, int maxValor) {
-    if (tamaño > MAX) tamaño = MAX;
-    n = tamaño;
+void Arreglo::generarAleatoriosSinRepeticion(int tam, int maxValor)
+{
+    if (tam > MAX) tam = MAX;
+    if (maxValor < tam) maxValor = tam;
 
-    for (int i = 0; i < n; i++) {
-        int num;
-        bool repetido;
+    n = tam;
 
-        do {
-            num = rand() % maxValor + 1;
-            repetido = false;
+    int* pool = new int[maxValor];
 
-            for (int j = 0; j < i; j++)
-                if (arreglo[j] == num) { repetido = true; break; }
+    for (int i = 0; i < maxValor; i++)
+        pool[i] = i;
 
-        } while (repetido);
-
-        arreglo[i] = num;
-        cout << "Pos " << i << " = " << arreglo[i] << endl;
+    for (int i = 0; i < n; i++)
+    {
+        int idx = rand() % (maxValor - i);
+        arreglo[i] = pool[idx];
+        pool[idx] = pool[maxValor - i - 1];
     }
+
+    delete[] pool;
 }
